@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>M12e Puebla · Ormuz: la fractura del orden imperial</title>
+    <title>Radio M12 · El Imperio contra las cuerdas</title>
     <style>
         /* === RESET Y ESTILOS GENERALES === */
         body {
@@ -14,7 +14,7 @@
             line-height: 1.5;
         }
         
-        /* === CABECERA FIJA === */
+        /* === CABECERA FIJA (ESPACIO 1 - PLATAFORMA) === */
         header {
             background: #111;
             color: white;
@@ -44,7 +44,7 @@
             font-weight: normal;
             opacity: 0.7;
         }
-        .nuevo-badge {
+        .plataforma-badge {
             background: #c00;
             color: white;
             font-size: 12px;
@@ -52,13 +52,7 @@
             border-radius: 30px;
             font-weight: bold;
             text-transform: uppercase;
-            animation: pulse 2s infinite;
             display: inline-block;
-        }
-        @keyframes pulse {
-            0% { opacity: 0.8; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.05); background-color: #ff3333; }
-            100% { opacity: 0.8; transform: scale(1); }
         }
         
         .meta-icons {
@@ -80,7 +74,7 @@
             font-weight: bold;
         }
 
-        /* === MENÚ NAVEGACIÓN === */
+        /* === MENÚ NAVEGACIÓN (PARTE DE ESPACIO 1) === */
         nav {
             background: #222;
             padding: 10px 20px;
@@ -90,6 +84,7 @@
             position: sticky;
             top: 68px;
             z-index: 999;
+            border-bottom: 3px solid #c00;
         }
         nav a {
             color: white;
@@ -98,24 +93,41 @@
             font-size: 12px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            padding: 5px 0;
+            position: relative;
         }
         nav a:hover { color: #ffaa00; }
+        nav a.activo::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: #ffaa00;
+        }
         
-        /* === BANNER DINÁMICO === */
-        .nuevo-articulo-banner {
+        /* === BANNER DINÁMICO (ESPACIO 1) === */
+        .banner-plataforma {
             background: #ffaa00;
             color: #111;
             text-align: center;
-            padding: 12px;
+            padding: 15px;
             font-family: Arial, sans-serif;
             font-weight: bold;
-            cursor: pointer;
             border-bottom: 2px solid #c00;
+        }
+        .banner-plataforma small {
+            display: block;
+            font-weight: normal;
+            font-size: 12px;
+            margin-top: 5px;
+            opacity: 0.8;
         }
 
         .hero-image {
             width: 100%;
-            max-height: 500px;
+            max-height: 400px;
             object-fit: cover;
             display: block;
             background: #222;
@@ -123,14 +135,82 @@
         
         .container {
             max-width: 1000px;
-            margin: 0 auto 40px auto;
+            margin: 0 auto;
             background: white;
-            padding: 40px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
         }
         
-        /* === ESTILOS DE ARTÍCULO === */
-        .seccion { margin-bottom: 70px; scroll-margin-top: 140px; }
+        /* === DIVISORES DE ESPACIOS === */
+        .espacio-divider {
+            text-align: center;
+            margin: 40px 0 20px;
+            position: relative;
+        }
+        .espacio-divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #c00, transparent);
+            z-index: 1;
+        }
+        .espacio-tag {
+            display: inline-block;
+            background: white;
+            padding: 10px 30px;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 14px;
+            color: #c00;
+            border: 2px solid #c00;
+            border-radius: 40px;
+            position: relative;
+            z-index: 2;
+            background: white;
+        }
+        .espacio-tag.oscuro {
+            background: #111;
+            color: white;
+            border-color: #111;
+        }
+
+        /* === ESPACIO 2 - ARTÍCULO PRINCIPAL === */
+        .espacio-articulo {
+            padding: 40px;
+            background: white;
+        }
+        .articulo-header {
+            margin-bottom: 40px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
+        }
+        .articulo-titulo {
+            font-size: 48px;
+            margin: 10px 0;
+            line-height: 1.1;
+        }
+        .articulo-meta {
+            font-family: Arial, sans-serif;
+            color: #777;
+            font-size: 14px;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        .articulo-autor {
+            background: #f0f0f0;
+            padding: 5px 15px;
+            border-radius: 30px;
+            font-weight: bold;
+            color: #c00;
+        }
+        .seccion-articulo { 
+            margin-bottom: 60px; 
+            scroll-margin-top: 140px; 
+        }
         .section-meta {
             font-family: Arial, sans-serif;
             font-size: 12px;
@@ -138,8 +218,10 @@
             color: #777;
             letter-spacing: 1px;
         }
-        h1 { font-size: 42px; margin: 20px 0 10px; line-height: 1.1; }
-        h2 { font-size: 28px; border-left: 4px solid #c00; padding-left: 16px; margin-top: 40px; }
+        h2 { 
+            font-size: 32px; 
+            margin: 20px 0; 
+        }
         .balazo-ep {
             font-family: Arial, sans-serif;
             font-size: 1.8rem;
@@ -149,22 +231,123 @@
             padding: 20px;
             margin: 30px 0;
         }
-        .article-content { font-size: 18px; line-height: 1.8; }
-        .article-content p { margin-bottom: 1.5em; }
-        .firma-analitica {
-            font-family: monospace;
-            background: #eee;
-            padding: 8px 16px;
-            margin: 40px 0 0;
-            border-left: 3px solid #c00;
+        .articulo-contenido { 
+            font-size: 18px; 
+            line-height: 1.8; 
         }
-
+        .articulo-contenido p {
+            margin-bottom: 25px;
+        }
+        
+        /* === ESPACIO 3 - VIDEOS === */
+        .espacio-videos {
+            padding: 40px;
+            background: #f9f9f9;
+            border-top: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+        }
+        .videos-intro {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+        .videos-intro h3 {
+            font-size: 32px;
+            margin: 10px 0;
+            font-family: Arial, sans-serif;
+        }
+        .videos-intro p {
+            color: #555;
+            font-size: 16px;
+        }
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .video-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease;
+        }
+        .video-card:hover {
+            transform: translateY(-5px);
+        }
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 */
+            height: 0;
+            overflow: hidden;
+            background: #000;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .video-info {
+            padding: 20px;
+        }
+        .video-info h4 {
+            margin: 0 0 10px 0;
+            font-family: Arial, sans-serif;
+            font-size: 18px;
+            color: #111;
+        }
+        .video-info p {
+            margin: 0;
+            color: #666;
+            font-size: 14px;
+            font-family: Arial, sans-serif;
+            line-height: 1.5;
+        }
+        .video-duracion {
+            display: inline-block;
+            margin-top: 10px;
+            font-size: 12px;
+            color: #c00;
+            font-weight: bold;
+        }
+        
         /* === COMENTARIOS Y FOOTER === */
-        .comentarios { margin-top: 60px; border-top: 3px double #ccc; padding-top: 30px; }
+        .comentarios { 
+            padding: 40px;
+            background: white;
+        }
+        .comentarios h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .comentarios textarea {
+            width: 100%;
+            padding: 15px;
+            font-family: Arial, sans-serif;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            resize: vertical;
+        }
+        .comentarios button {
+            padding: 12px 30px;
+            background: #111;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
         footer {
             background: #111;
             color: white;
-            padding: 30px;
+            padding: 40px;
             text-align: center;
             font-family: Arial, sans-serif;
         }
@@ -173,127 +356,123 @@
 </head>
 <body>
 
+<!-- ========== ESPACIO 1: PLATAFORMA / CONTEXTO ========== -->
 <header>
     <div class="top-bar">
         <div class="site-title">
-            M12e Puebla <span id="subtitulo-header">Archivo de análisis</span>
-            <span id="nuevo-badge" class="nuevo-badge">¡NUEVO!</span>
+            Radio M12 · Análisis <span>Plataforma oficial</span>
+            <span class="plataforma-badge">GEOPOLÍTICA</span>
         </div>
         <div class="meta-icons">
-            <a href="mailto:analisis@m12e.org">✉️ Contacto</a>
-            <a href="#" target="_blank">▶ YouTube</a>
+            <a href="mailto:direccion@radiom12.mx">✉️ direccion@radiom12.mx</a>
+            <a href="https://youtube.com/@radiom12" target="_blank">▶ YouTube</a>
         </div>
     </div>
 </header>
 
 <nav id="menu-navegacion">
-    <!-- se llena con js -->
+    <!-- Se generará dinámicamente con JS -->
 </nav>
 
-<div id="nuevo-banner" class="nuevo-articulo-banner">
-    📢 <a href="#" style="text-decoration:none; color:inherit;">Ormuz: la disuasión de Irán y el umbral de la guerra con EE.UU.</a>
+<div class="banner-plataforma">
+    📻 Radio M12 · Dirección de Análisis
+    <small>Contenido oficial bajo supervisión institucional</small>
 </div>
 
-<img id="hero-img" src="https://ichef.bbci.co.uk/ace/ws/640/cpsprodpb/017e/live/b50b3a90-1823-11f1-bfea-7f34869b0bbb.jpg.webp" alt="Estrecho de Ormuz - buques de guerra" class="hero-image">
+<img id="hero-img" src="https://imagenes.elpais.com/resizer/v2/2TSCGE5J3BJUVICSQFNBQKUUNQ.jpg?auth=38108787ec29328ba74b3d5fbefbe44c5c743bc0efdc910bac6f2b1f3cfe87c7&width=1200" alt="Buques de guerra en el Estrecho de Ormuz" class="hero-image">
 
+<!-- ========== CONTENEDOR PRINCIPAL ========== -->
 <div class="container" id="contenido-principal">
-    <!-- se llena con js -->
+    <!-- TODO EL CONTENIDO SE GENERARÁ AQUÍ CON JS -->
+    <!-- Incluirá: ESPACIO 2 (Artículo) + ESPACIO 3 (Videos) -->
 </div>
 
+<!-- ========== FOOTER ========== -->
 <footer>
-    © 2026 M12e Puebla · Plataforma de Análisis Crítico · Intervención dialéctica bajo protocolo R⊕10⊕T⊕P⊕A
+    © 2026 Radio M12 · Dirección de Análisis · Puebla, México<br>
+    <small style="opacity:0.7; margin-top:10px; display:block;">Plataforma de análisis y contenido institucional</small>
 </footer>
 
 <script>
-    // === ARTÍCULO CORREGIDO: EXCLUSIVAMENTE ORMUZ, IRÁN Y EE.UU. ===
-    // CORRECCIÓN ADICIONAL: Se eliminó la palabra "régimen" y se reemplazó por "gobierno" o "Estado".
+    // === BASE DE DATOS - RADIO M12 ===
+    // Análisis "El Imperio contra las cuerdas" con videos ACTUALIZADOS (Video1 nuevo, Video2 se queda)
     const ARTICULOS = [
         {
             id: 1,
-            titulo: "Estrecho de Ormuz: la disuasión de Irán y el umbral de la guerra con EE.UU.",
-            subtitulo: "Análisis táctico/estratégico, lógica de los falsos banderazos y el punto de fractura del orden imperial en Asia",
-            fecha: "5 de marzo de 2026",
-            autor: "Operador Analítico · M12e",
-            heroImage: "https://ichef.bbci.co.uk/ace/ws/640/cpsprodpb/017e/live/b50b3a90-1823-11f1-bfea-7f34869b0bbb.jpg.webp",
+            titulo: "El Imperio contra las cuerdas: la derrota estratégica de EE.UU. y la agonía de un orden",
+            subtitulo: "Análisis dialéctico de la coyuntura 2026-2027 para trabajadores, estudiantes e intelectuales",
+            fecha: "12 de marzo de 2026",
+            autor: "Colectivo M12 · Operador analítico",
+            autorCargo: "Dirección de Análisis",
+            heroImage: "https://imagenes.elpais.com/resizer/v2/2TSCGE5J3BJUVICSQFNBQKUUNQ.jpg?auth=38108787ec29328ba74b3d5fbefbe44c5c743bc0efdc910bac6f2b1f3cfe87c7&width=1200",
             secciones: [
                 {
                     id: "apertura",
-                    meta: "FENOMENOLOGÍA DEL CONFLICTO",
-                    titulo: "La imagen y su apariencia: los guardianes del flujo",
+                    meta: "INTRODUCCIÓN",
+                    titulo: "La imagen que no es una postal",
                     balazo: "Los buques de guerra no son defensores de la libertad, son los centinelas armados de la relación social capitalista en su punto más frágil.",
                     contenido: `
-                        <p>La imagen que encabeza este análisis no es una ilustración inocente: es la representación visual de la reificación del poder. El Estrecho de Ormuz, punto geográfico estratégico, aparece dominado por la presencia de la fuerza militar (los buques de la Quinta Flota), ocultando las relaciones sociales y la lucha interimperialista que subyacen al flujo del petróleo. Nuestra intervención debe atravesar esta capa de pseudoconcreción.</p>
-                        <p>La pregunta —quién gana la guerra en Ormuz, quién ejecuta falsos banderazos y por dónde estallará el cierre— no puede responderse con un parte de bajas naval. Exige desarticular la apariencia ideológica del conflicto y aplicar el instrumental teórico de la contradicción Capital-Vida, el Estado como condensación de fuerzas (Poulantzas) y la lógica dialéctica de ascenso de lo abstracto a lo concreto (Ilyenkov). Este análisis se centra exclusivamente en la dinámica entre Irán y EE.UU. y sus aliados, sin concesiones a la agenda mediática dominante.</p>
+                        <p>Miren la imagen que encabeza este análisis. No es una ilustración inocente, es la representación visual de la reificación del poder. El Estrecho de Ormuz, punto geográfico estratégico, aparece dominado por la presencia de la fuerza militar (los buques de la Quinta Flota), ocultando las relaciones sociales y la lucha interimperialista que subyacen al flujo del petróleo.</p>
+                        <p>La narrativa oficial nos dice que Estados Unidos <em>perdió una guerra contra Irán</em>, que ya no controla Ormuz ni el Mar Rojo, que el precio del petróleo se dispara y que sufre una crisis interna. Pero esa es solo la corteza del fenómeno. La pregunta que debemos hacernos no es <strong>si EE.UU. está herido</strong>, sino <strong>qué revela esa herida</strong> sobre la naturaleza del capitalismo en su fase terminal y, sobre todo, <strong>hacia dónde nos arrastrará en los próximos tres meses</strong>. Nosotros, los trabajadores, estudiantes e intelectuales que sufrimos las consecuencias de sus crisis, necesitamos respuestas que atraviesen el ruido mediático y lleguen al hueso de la contradicción.</p>
                     `
                 },
                 {
-                    id: "rastreo",
-                    meta: "BLOQUE 5 · TRIANGULACIÓN",
-                    titulo: "Tres narrativas sobre Ormuz, una misma materia en disputa",
-                    balazo: "La 'libertad de navegación' es el nombre que el capital global da a su necesidad de circulación ininterrumpida.",
+                    id: "ruptura",
+                    meta: "RUPTURA",
+                    titulo: "La guerra que se perdió hace décadas",
+                    balazo: "No poder usar Ormuz y el Mar Rojo no es un incidente táctico: es la constatación de que el garrote del imperialismo ya no llega.",
                     contenido: `
-                        <p><strong>Narrativa desde la centralidad (Pentágono/think tanks occidentales):</strong> Ormuz es el "estrangulamiento" de la economía global. Se presenta al gobierno de Irán como un actor irracional que "amenaza la libertad de navegación". La presencia de la Quinta Flota se justifica como "disuasión defensiva". Cualquier ataque a un petrolero se atribuye inmediatamente a Teherán para construir la narrativa de la "agresión iraní". El objetivo es mantener el statu quo de dominio naval y garantizar el flujo de petróleo a los aliados de EE.UU.</p>
-                        <p><strong>Narrativa desde la periferia crítica (Sur global/geopolítica no alineada):</strong> Ormuz es el punto donde la soberanía nacional de Irán choca con el derecho del mar impuesto por el capital. La "libertad de navegación" es la libertad del capital de explotar los recursos de la región sin rendir cuentas a los Estados ribereños. La presencia naval de EE.UU. no es defensiva, sino ofensiva: es la punta de lanza del imperialismo para garantizar el flujo de petróleo a sus aliados y castigar a Irán con sanciones, manteniendo la subordinación de las petromonarquías.</p>
-                        <p><strong>Narrativa desde Teherán (eje de la resistencia):</strong> Ormuz es una línea roja de la soberanía nacional. El cierre no es un objetivo, sino una capacidad de disuasión. Se presenta como un "dispositivo defensivo" ante una agresión existencial. La narrativa oficial iraní siempre enmarca cualquier incidente como una operación de "falsa bandera" de EE.UU. o Israel para provocar una guerra que justifique su presencia en la región y destruya su programa nuclear. La "unidad de los frentes" (Houthis, milicias en Irak) es la extensión de esta disuasión.</p>
+                        <p>Lo primero que debemos disolver es la apariencia de que EE.UU. "perdió" una guerra convencional. Esa es una trampa conceptual. La guerra no se perdió ayer en Ormuz; se viene perdiendo <em>estratégicamente</em> desde hace décadas, y el conflicto con Irán es solo la manifestación más reciente y aguda de esa derrota acumulativa.</p>
+                        <p>Para entenderlo hay que ir a la base material: el poder de EE.UU. descansa, desde 1945, en dos pilares indisolubles: el control de las rutas marítimas globales (la "libertad de navegación" del capital) y el petróleo como sangre de la acumulación. Quien controla el flujo de petróleo, controla la economía mundial. Durante años, la Quinta Flota en Bahréin garantizaba ese control. Hoy, esa flota es un adorno caro e inútil.</p>
+                        <p>Los Houthis en Yemen, con misiles de bajo costo, han cerrado el Mar Rojo a los intereses de Israel y sus aliados. Irán ha convertido Ormuz en una línea roja. La "guerra" que EE.UU. ha perdido no es una batalla de tanques, es la guerra por la <em>capacidad de imponer su voluntad sin costo</em>. Esa capacidad se ha evaporado. Y como toda estructura que pierde su función, comienza a pudrirse desde dentro. Lo que vemos ahora en Washington, en el Pentágono y en las calles de Estados Unidos no es un accidente, es la descomposición química de un imperio que ya no puede cumplir su misión histórica: garantizar la acumulación global del capital a cualquier precio.</p>
                     `
                 },
                 {
-                    id: "contradiccion",
-                    meta: "P10 · DIAGNÓSTICO ESTRUCTURAL",
-                    titulo: "La contradicción central en el Golfo Pérsico",
+                    id: "nudo",
+                    meta: "NUDO DIALÉCTICO",
+                    titulo: "Contradicciones en ebullición",
+                    balazo: "Analicemos las capas de esta crisis en los próximos 90 días, aplicando el método que nos obliga a ir de lo abstracto a lo concreto.",
                     contenido: `
-                        <p><strong>1. Contradicción Estructural Central:</strong> No es "Irán vs. EE.UU." como una mera rivalidad estatal. Es la contradicción entre la <strong>necesidad del capital global (estadounidense, europeo y asiático) de garantizar el flujo ininterrumpido de petróleo desde el Golfo Pérsico</strong> (base material de la acumulación) y el <strong>derecho de Irán a ejercer su soberanía sobre su territorio y aguas adyacentes</strong> para romper el cerco de sanciones y reconfigurar el equilibrio de poder regional. Es la contradicción entre la acumulación global y la soberanía nacional periférica.</p>
-                        <p><strong>2. Contradicciones Subordinadas:</strong></p>
-                        <ul>
-                            <li><strong>Capital vs. Capital (contradicción interimperialista):</strong> La dependencia asiática (China, India, Japón) del petróleo del Golfo es mayor que la europea. Un cierre de Ormuz afectaría más a los aliados de EE.UU. en Asia que a EE.UU. mismo. Esto genera una fractura: ¿hasta qué punto EE.UU. está dispuesto a sacrificar la economía de sus aliados asiáticos para castigar a Irán?</li>
-                            <li><strong>Vida vs. Capital a escala regional:</strong> La supervivencia del gobierno de Irán (vida política) vs. los intereses de las petromonarquías árabes que dependen de la protección estadounidense (capital).</li>
-                        </ul>
-                        <p><strong>3. Complejo de Mediaciones:</strong></p>
-                        <ul>
-                            <li><strong>El Estado (Poulantzas):</strong> EE.UU. actúa no solo como su propio Estado, sino como el "Estado del capital global" en la región, garantizando las condiciones generales de producción (el flujo de petróleo). El Estado iraní utiliza sus capacidades para proyectar poder a través de mediaciones: la Armada del Cuerpo de Guardianes de la Revolución (IRGC) y proxies regionales (Houthis en Yemen) para hostigar esa garantía.</li>
-                            <li><strong>La Ideología (Pseudoconcreción):</strong> La "seguridad energética" y la "lucha contra el terrorismo" (con Irán en la lista del "eje del mal") son las capas ideológicas que ocultan la disputa material por la renta petrolera y la hegemonía regional.</li>
-                            <li><strong>La Tecnología:</strong> La asimetría es total. Buques de guerra de última generación (EE.UU.) vs. minas navales de bajo costo, misiles antibuque de corto alcance y drones explosivos (Irán). La guerra asimétrica busca negar el dominio tecnológico superior mediante la saturación y el costo elevado.</li>
-                        </ul>
+                        <p><strong>1. La contradicción central: Capital global vs. Soberanía periférica.</strong> La subida del precio del petróleo no es un "shock" externo, es la nueva normalidad de un mundo donde el Sur global (Irán, Rusia, los BRICS) ha aprendido a usar sus recursos como armas geopolíticas. Para el capital estadounidense y europeo, esto es una asfixia lenta. Un petróleo caro significa inflación de costes, caída del consumo popular y presión sobre los márgenes de beneficio. Pero para las potencias emergentes (China, India), es un incentivo para acelerar la desdolarización y buscar rutas alternativas. En tres meses, veremos cómo la Reserva Federal se queda sin herramientas: si sube los tipos para contener la inflación, hunde la economía; si los baja, el dólar se devalúa y el petróleo se dispara más. Es la clásica pinza de la contradicción imperial.</p>
+                        <p><strong>2. La fractura interimperialista.</strong> EE.UU. ya no es el único policía. China observa. Si el cierre de Ormuz se agudiza, Pekín no dudará en desplegar su flota para escoltar sus propios petroleros, mostrando a los aliados tradicionales de EE.UU. (Japón, Corea del Sur) quién garantiza realmente su supervivencia energética. La derrota de EE.UU. en Oriente Medio es, objetivamente, una victoria para la estrategia china de expansión sin confrontación directa. La fractura entre las clases dominantes estadounidenses no es ideológica (demócratas vs. republicanos), es material: una fracción del capital (la industrial, la del "America First") quiere replegarse y recomponer fuerzas; la otra (la financiera, la globalista) exige una respuesta militar desesperada para salvar lo que queda de su red de alianzas. Estas dos fracciones se desgarrarán en público en los próximos meses, paralizando aún más al Estado.</p>
+                        <p><strong>3. La caída moral y la desobediencia: el ejército como espejo de la nación.</strong> Nos dijeron que los portaaviones son "símbolos de libertad". Son, en realidad, los centinelas armados de una relación social injusta en su punto más frágil. Cuando esos centinelas empiezan a dudar, el edificio tiembla. La "caída moral de las fuerzas armadas" y la "desobediencia al mando supremo" no son un problema de reclutas desmotivados. Son la consecuencia lógica de enviar a soldados, cada vez más provenientes de familias trabajadoras empobrecidas, a morir por un imperio que ya no puede prometerles ni una pensión digna. Es la contradicción capital-vida llevada al uniforme. El soldado estadounidense medio sabe que lucha por el flujo de petróleo que encarece la gasolina que él mismo no puede pagar. La desobediencia no es ideológica, es material: es la negación del cuerpo a sacrificarse por un sistema que le ha declarado la guerra a su propia existencia.</p>
+                        <p><strong>4. La condensación en el Estado.</strong> El Estado norteamericano (Poulantzas) es el campo de batalla donde estas contradicciones se condensan. No es un sujeto con voluntad propia, es la <em>correlación de fuerzas</em> hecha institución. En los próximos tres meses, esa correlación estará en máximo desequilibrio. La Casa Blanca ordenará, el Pentágono pondrá pegas, el Congreso bloqueará los presupuestos, y los gobernadores (de ambos partidos) se pelearán por los recursos federales mientras las ciudades se hunden. Veremos un espectáculo dantesco de disfunción institucional, no por "mala política", sino porque el Estado ya no puede cumplir su función mínima: gestionar los intereses de una clase dominante profundamente dividida.</p>
                     `
                 },
                 {
-                    id: "fuerzas",
-                    meta: "CORRELACIÓN Y RUPTURA",
-                    titulo: "Táctica, estrategia y la lógica de los falsos banderazos",
-                    balazo: "Tácticamente EE.UU. puede hundir la marina iraní en horas. Estratégicamente Irán ya ganó: su amenaza es un factor estructural en la economía global.",
+                    id: "climax",
+                    meta: "CLÍMAX",
+                    titulo: "El polvorín y el error de cálculo",
+                    balazo: "El umbral de ruptura no es una fecha en el calendario, es un punto de saturación. El polvorín puede estallar por el error de cálculo más tonto.",
                     contenido: `
-                        <p><strong>4. Correlación de Fuerzas:</strong></p>
-                        <ul>
-                            <li><strong>Tácticamente (corto plazo, en el estrecho):</strong> Gana EE.UU. Su capacidad de interdicción naval y destrucción de objetivos costeros es aplastante. Puede hundir la marina iraní en horas. Pero Irán no busca una batalla campal.</li>
-                            <li><strong>Estratégicamente (largo plazo, disuasión y desgaste):</strong> Gana Irán. Ha conseguido que la simple amenaza de cierre de Ormuz sea un factor estructural en los precios del petróleo y en la planificación militar de EE.UU. Ha elevado el costo de una guerra contra él a un nivel prohibitivo. La capacidad de hostigar el tráfico (como hacen los Houthis en el Mar Rojo, extensión de esta lógica) sin llegar al cierre total mantiene la tensión y desgasta la economía global, erosionando la paciencia de los aliados de EE.UU.</li>
-                        </ul>
-                        <p><strong>5. Ruptura de la Pseudoconcreción (Análisis de los falsos banderazos en Ormuz):</strong></p>
-                        <p>Aquí es donde el análisis debe ser más fino. La "falsa bandera" no es una conspiración ocasional, es una tentación estructural para un poder hegemónico en declive.</p>
-                        <p><strong>¿Por qué EE.UU. o Israel atacarían a sus "propios aliados" en Ormuz?</strong> Porque necesitan un casus belli que unifique a la comunidad internacional (o al menos a sus aliados) contra Irán. Atacar un petrolero saudí o emiratí forzaría a Riad y Abu Dabi, que mantienen contactos con Teherán, a alinearse con EE.UU. en una respuesta militar. Rompe cualquier intento de distensión regional. Atacar un buque de guerra estadounidense y culpar a Irán sería el equivalente al Golfo de Tonkín: justificaría una respuesta masiva y directa contra Irán, algo que la administración estadounidense no puede vender fácilmente a su opinión pública sin una provocación clara.</p>
-                        <p><strong>La lógica material:</strong> La "falsa bandera" es una operación de recomposición de la hegemonía fracturada. Cuando el aliado duda (petromonarquías negociando con Irán) y la opinión pública es reticente, la provocación se vuelve un instrumento de la razón de Estado para disciplinar a la propia coalición y generar el consenso interno para la guerra. No es una teoría loca, es una herramienta que está en la "caja de herramientas" del imperialismo, especialmente en su fase de declive.</p>
-                    `
-                },
-                {
-                    id: "umbral",
-                    meta: "PRONÓSTICO DIALÉCTICO",
-                    titulo: "¿Por dónde estallará el cierre de Ormuz? El error de cálculo israelí y el factor China",
-                    balazo: "El cierre total es el último recurso de Irán, su 'opción nuclear' convencional. Solo lo activará ante una amenaza existencial.",
-                    contenido: `
-                        <p><strong>8. Umbral de Ruptura:</strong> La pregunta correcta no es "si estallará", sino "bajo qué forma y en qué contexto la disuasión fallará". El cierre total es el último recurso de Irán. Solo lo activará si percibe una amenaza existencial inminente: ataque a sus instalaciones nucleares, intento de cambio de gobierno por invasión, o un golpe directo a su liderazgo.</p>
-                        <p><strong>Escenario A (Fractura en Europa):</strong> Si la guerra en Ucrania colapsa y Rusia obtiene una victoria decisiva, la atención de la OTAN se concentrará en su flanco este. Irán podría aprovechar para realizar acciones limitadas de hostigamiento en Ormuz, calculando que un Occidente sobrecargado no abrirá un segundo frente. Pero esto no provocaría un cierre total, sino una escalada controlada para probar los límites.</p>
-                        <p><strong>Escenario B (Fractura en Asia - EL MÁS PROBABLE):</strong> El detonante vendrá de un error de cálculo de Israel. Israel percibe a Irán como una amenaza existencial y ha realizado sabotajes y asesinatos dentro de Irán. Si Israel lanza un ataque a gran escala contra las instalaciones nucleares iraníes (con o sin luz verde de EE.UU.), Teherán se verá ante la disyuntiva: responder con su palanca máxima.</p>
-                        <p><strong>¿Por qué afectaría a EE.UU.?</strong> Porque un cierre de Ormuz dispararía el precio del petróleo a niveles estratosféricos (inflación global, recesión). Pero, más importante, obligaría a China a intervenir. China importa la mayor parte de su petróleo del Golfo. No puede permitir que su economía, ya frágil, sufra un bloqueo. Pekín tendría que desplegar su armada para escoltar sus propios buques o negociar directamente con Irán, dejando a EE.UU. como un actor irrelevante o, peor, como el causante del caos. La fractura sería geopolítica: el momento en que EE.UU. demuestra que ya no puede garantizar la "seguridad de las rutas" para sus propios aliados asiáticos, y China emerge como el verdadero garante de la estabilidad regional. Ese es el punto de no retorno para la hegemonía estadounidense.</p>
+                        <p>Imaginen: Israel, sintiendo que su único aliado se debilita, lanza un ataque desesperado contra instalaciones iraníes para forzar a EE.UU. a entrar. La respuesta de Irán no es una declaración de guerra, es el cierre efectivo de Ormuz. El precio del barril vuela a 150, 200 dólares. La inflación en EE.UU. no es un número, es el hambre en los supermercados. Y entonces, la "desobediencia" en las bases militares se convierte en motín cuando se ordena a los soldados embarcar hacia otra guerra sin sentido. La clase dominante se acusará mutuamente en los medios de "haber perdido Irán" y de "destruir la economía". No habrá un golpe de Estado tradicional, porque no hace falta: el Estado simplemente dejará de funcionar como mecanismo de cohesión.</p>
                     `
                 },
                 {
                     id: "cierre",
                     meta: "PRAXIS",
-                    titulo: "Direccionalidad histórica y criterio ético-normativo",
+                    titulo: "Organizarse para que la caída no nos aplaste",
+                    balazo: "Frente a este escenario, el 'nosotros' de la clase trabajadora y los pueblos oprimidos no puede permitirse la contemplación.",
                     contenido: `
-                        <p><strong>9. Direccionalidad Histórica:</strong> La guerra en Ormuz (latente o activa) es un síntoma de la transición hacia un orden multipolar. La capacidad del Estado iraní de sostener la disuasión durante décadas, a pesar de las sanciones y las amenazas, demuestra que el poder unipolar tiene límites. La historia se mueve hacia la necesidad de negociar con los poderes regionales, no de imponerles condiciones. El estrecho es el laboratorio donde se prueba la nueva correlación de fuerzas global.</p>
-                        <p><strong>10. Criterio Ético-Normativo (Cierre de Praxis):</strong> Frente a la inminencia de una catástrofe que disfrazan de "conflicto por la libertad de navegación", nuestra praxis analítica debe desmontar la farsa. El "nosotros" de clase no puede situarse ni del lado del imperio ni del lado del gobierno teocrático iraní. Debe situarse en la lucha por desarticular la lógica que convierte un punto geográfico en un campo de batalla por la acumulación. El análisis no es para saber quién ganará, sino para revelar que, en esta guerra, la humanidad (la vida de los marineros, la estabilidad económica de los pueblos, el medio ambiente del Golfo) es la variable de ajuste. La intervención es, por tanto, una advertencia: están jugando con fuego en un polvorín, y la chispa puede venir de quien menos lo esperamos, pero siempre en beneficio de la recomposición del capital.</p>
-                        <div class="firma-analitica">[ R⊕10⊕T⊕P⊕A ] ∘ M ∘ B4 ∘ B7 — Protocolo de intervención dialéctica aplicado. Análisis corregido y densificado.</div>
+                        <p>No se trata de alegrarse por la agonía del imperio, porque su agonía no será silenciosa. Un imperio herido es más peligroso que un imperio fuerte. En los próximos tres meses, la direccionalidad histórica apunta hacia una profundización del caos que el capital intentará gestionar con más autoritarismo, más recortes sociales y más guerras por delegación. Nuestra tarea no es esperar a que caiga el imperio, sino organizarnos para que su caída no nos aplaste.</p>
+                        <p>Esto significa fortalecer los lazos de solidaridad en nuestros barrios, en nuestras fábricas y en nuestras universidades. Significa negarse a ser la carne de cañón de una guerra que no es nuestra. Significa entender que, como dijo Rosa Luxemburgo, lo que se juega es socialismo o barbarie. La crisis de Estados Unidos nos demuestra que la barbarie ya está aquí, en forma de inflación, militarismo y descomposición social. La única respuesta digna es construir, desde ya, las trincheras de la nueva civilización.</p>
+                        <p style="margin-top:2em;"><em>“Los buques de guerra no son defensores de la libertad, son los centinelas armados de la relación social capitalista en su punto más frágil.”</em></p>
                     `
+                }
+            ],
+            // VIDEOS CORREGIDOS: El primer video es el nuevo (oe0Pp8GzlvI), el segundo se queda como estaba (GljTVbheYII)
+            videos: [
+                {
+                    titulo: "30 de 410 empresas sionistas se dedican al espionaje en nuestro país",
+                    descripcion: "Video solicitado: análisis sobre actividades de inteligencia y redes corporativas.",
+                    youtubeId: "oe0Pp8GzlvI", // NUEVO ID
+                    duracion: "17:45"
+                },
+                {
+                    titulo: "Ellos juegan a la guerra, los pueblos ponen los muertos",
+                    descripcion: "Video 2 (se queda como estaba): Documental de Radio M12 sobre las consecuencias humanas de la guerra en el Golfo.",
+                    youtubeId: "GljTVbheYII", // MISMO ID (se queda)
+                    duracion: "32:10"
                 }
             ]
         }
@@ -305,50 +484,117 @@
         const container = document.getElementById('contenido-principal');
         const menu = document.getElementById('menu-navegacion');
         
-        // Actualizar Imagen Hero
-        document.getElementById('hero-img').src = art.heroImage;
-        
-        // Limpiar y Generar Menú
-        menu.innerHTML = "";
-        art.secciones.forEach(sec => {
-            const link = document.createElement('a');
-            link.href = `#${sec.id}`;
-            link.textContent = sec.meta.split('·')[0].trim() || sec.id.toUpperCase();
-            menu.appendChild(link);
-        });
-
-        // Generar Contenido
-        let html = `
-            <div class="section-meta" style="margin-bottom:10px;">${art.fecha} · Por: ${art.autor}</div>
-            <h1>${art.titulo}</h1>
-            <p style="font-size: 20px; color: #444; margin-bottom: 40px;">${art.subtitulo}</p>
+        // Generar Menú (Espacio 1)
+        menu.innerHTML = `
+            <a href="#articulo" class="activo">ANÁLISIS</a>
+            <a href="#videos">VIDEOS</a>
+            <a href="#comentarios">PARTICIPACIÓN</a>
         `;
 
+        // Generar TODO el contenido (Espacio 2 + Espacio 3)
+        let html = `
+            <!-- ========== ESPACIO 2: ARTÍCULO PRINCIPAL ========== -->
+            <div id="articulo" class="espacio-articulo" style="scroll-margin-top: 140px;">
+                <div class="articulo-header">
+                    <div class="articulo-meta">
+                        <span class="articulo-autor">${art.autor}</span>
+                        <span>${art.fecha}</span>
+                        <span>📁 Análisis geopolítico</span>
+                    </div>
+                    <h1 class="articulo-titulo">${art.titulo}</h1>
+                    <p style="font-size: 20px; color: #555; margin-top: 20px;">${art.subtitulo}</p>
+                </div>
+        `;
+
+        // Secciones del artículo
         art.secciones.forEach(sec => {
             html += `
-                <section id="${sec.id}" class="seccion">
+                <section id="${sec.id}" class="seccion-articulo">
                     <div class="section-meta">${sec.meta}</div>
                     <h2>${sec.titulo}</h2>
                     ${sec.balazo ? `<div class="balazo-ep">${sec.balazo}</div>` : ''}
-                    <div class="article-content">${sec.contenido}</div>
+                    <div class="articulo-contenido">${sec.contenido}</div>
                 </section>
             `;
         });
 
-        // Añadir caja de comentarios genérica
+        // Cierre del Espacio 2
+        html += `</div>`;
+
+        // ========== ESPACIO 3: VIDEOS ==========
+        if (art.videos && art.videos.length > 0) {
+            html += `
+                <div id="videos" class="espacio-videos" style="scroll-margin-top: 140px;">
+                    <div class="espacio-divider">
+                        <span class="espacio-tag">ESPACIO AUDIOVISUAL</span>
+                    </div>
+                    
+                    <div class="videos-intro">
+                        <h3>Producciones de Radio M12</h3>
+                        <p>Contenido audiovisual producido por la Dirección de Radio M12 como complemento a nuestros análisis</p>
+                    </div>
+                    
+                    <div class="videos-grid">
+            `;
+            
+            art.videos.forEach(video => {
+                html += `
+                    <div class="video-card">
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/${video.youtubeId}" 
+                                    title="${video.titulo}" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="video-info">
+                            <h4>${video.titulo}</h4>
+                            <p>${video.descripcion}</p>
+                            <span class="video-duracion">⏱️ ${video.duracion}</span>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            html += `</div></div>`;
+        }
+
+        // ========== ESPACIO DE COMENTARIOS ==========
         html += `
-            <div class="comentarios">
-                <h2>Comentarios</h2>
-                <textarea placeholder="Escribe tu opinión..." rows="4" style="width:100%; padding:12px;"></textarea><br>
-                <button disabled style="padding:10px 20px; background:#111; color:white; opacity:0.5; margin-top:10px;">Publicar (Demo)</button>
-                <p style="font-size:14px; color:#777;">foro en modo lectura · intervenciones desactivadas</p>
+            <div id="comentarios" class="comentarios" style="scroll-margin-top: 140px;">
+                <div class="espacio-divider">
+                    <span class="espacio-tag">PARTICIPACIÓN CIUDADANA</span>
+                </div>
+                <h2>Comparte tu opinión con la Dirección</h2>
+                <p style="color: #555; margin-bottom: 30px;">Tus comentarios son importantes para la planeación de contenido de Radio M12</p>
+                <textarea placeholder="Escribe tu opinión..." rows="5"></textarea><br>
+                <button disabled>Publicar comentario (Demo)</button>
+                <p style="font-size: 12px; color: #999; margin-top: 20px;">* Esta es una versión demo. Los comentarios se habilitarán próximamente.</p>
             </div>
         `;
 
         container.innerHTML = html;
+
+        // Activar el enlace correcto en el menú según la sección visible
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    document.querySelectorAll('nav a').forEach(link => {
+                        link.classList.remove('activo');
+                        if (link.getAttribute('href') === '#' + entry.target.id) {
+                            link.classList.add('activo');
+                        }
+                    });
+                }
+            });
+        }, { threshold: 0.3 });
+
+        document.querySelectorAll('#articulo, #videos, #comentarios').forEach(section => {
+            observer.observe(section);
+        });
     }
 
-    // Iniciar con el primer artículo
+    // Iniciar
     window.onload = () => cargarArticulo(0);
 </script>
 
