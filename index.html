@@ -3,9 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>M12e Puebla · El Fuego y el Acuerdo</title>
+    <title>M12e Puebla · El Costo Imperial: Guerra, Pobreza y la Barbarie del Capital</title>
     <style>
         /* === RESET Y ESTILOS GENERALES === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         body {
             margin: 0;
             font-family: "Georgia", serif;
@@ -38,6 +43,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            flex-wrap: wrap;
         }
         .site-title span {
             font-size: 14px;
@@ -98,6 +104,7 @@
             font-size: 12px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            transition: color 0.2s;
         }
         nav a:hover { color: #ffaa00; }
         
@@ -112,108 +119,73 @@
             cursor: pointer;
             border-bottom: 2px solid #c00;
         }
+        .nuevo-articulo-banner a {
+            text-decoration: none;
+            color: inherit;
+        }
 
         .hero-image {
             width: 100%;
-            max-height: 500px;
+            max-height: 550px;
             object-fit: cover;
             display: block;
             background: #222;
         }
         
         .container {
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto 40px auto;
             background: white;
-            padding: 40px;
+            padding: 40px 50px;
             box-shadow: 0 0 20px rgba(0,0,0,0.1);
         }
         
         /* === ESTILOS DE ARTÍCULO === */
-        .seccion { margin-bottom: 70px; scroll-margin-top: 140px; }
+        .seccion { margin-bottom: 70px; scroll-margin-top: 150px; }
         .section-meta {
             font-family: Arial, sans-serif;
             font-size: 12px;
             text-transform: uppercase;
             color: #777;
             letter-spacing: 1px;
+            border-left: 3px solid #c00;
+            padding-left: 12px;
+            margin-bottom: 12px;
         }
-        h1 { font-size: 42px; margin: 20px 0 10px; line-height: 1.1; }
+        h1 { font-size: 46px; margin: 20px 0 10px; line-height: 1.1; font-weight: 700; }
         .balazo-ep {
             font-family: Arial, sans-serif;
-            font-size: 1.8rem;
+            font-size: 1.4rem;
             font-weight: 700;
             border-left: 4px solid #c00;
             background-color: #f9f9f9;
-            padding: 20px;
-            margin: 30px 0;
-        }
-        .article-content { font-size: 18px; line-height: 1.8; }
-
-        /* === TABLAS DE RASTREO === */
-        .tabla-agencias, .tabla-subjetividad {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 30px 0;
-            font-family: Arial, sans-serif;
-            font-size: 15px;
-            border: 1px solid #ddd;
-        }
-        .tabla-agencias th, .tabla-subjetividad th {
-            background-color: #111;
-            color: white;
-            padding: 12px;
-            text-align: left;
-            font-weight: normal;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            font-size: 13px;
-        }
-        .tabla-agencias td, .tabla-subjetividad td {
-            padding: 15px 12px;
-            border-bottom: 1px solid #eee;
-            vertical-align: top;
-        }
-        .tabla-agencias tr:last-child td, .tabla-subjetividad tr:last-child td {
-            border-bottom: none;
-        }
-        .tabla-agencias tr:hover, .tabla-subjetividad tr:hover {
-            background-color: #f9f9f9;
-        }
-        .tabla-agencias td:first-child, .tabla-subjetividad td:first-child {
-            font-weight: bold;
-            width: 20%;
-        }
-        .tabla-agencias td:nth-child(2) {
-            width: 20%;
-            color: #555;
-        }
-        .nota-metodologica {
-            background-color: #f4f4f4;
-            border-left: 4px solid #c00;
-            padding: 20px;
+            padding: 20px 25px;
             margin: 30px 0;
             font-style: italic;
-            color: #333;
+            color: #1a1a1a;
         }
+        .article-content { font-size: 18px; line-height: 1.8; }
+        .article-content p { margin-bottom: 1.2em; }
+        .article-content strong { color: #b22222; }
 
+        .autor-destacado {
+            background: #f0f0f0;
+            padding: 12px 20px;
+            border-radius: 4px;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            margin: 20px 0 10px;
+            display: inline-block;
+            border-left: 4px solid #c00;
+        }
         /* === COMENTARIOS Y FOOTER === */
         .comentarios { margin-top: 60px; border-top: 3px double #ccc; padding-top: 30px; }
         .comentarios textarea {
             width: 100%;
-            padding: 10px;
-            font-family: Arial, sans-serif;
-            border: 1px solid #ccc;
-            box-sizing: border-box;
-        }
-        .comentarios button {
-            padding:10px 20px; 
-            background:#111; 
-            color:white; 
-            opacity:0.5; 
-            border: none; 
-            margin-top: 10px;
-            cursor: not-allowed;
+            padding: 12px;
+            font-family: inherit;
+            margin: 15px 0;
+            border: 1px solid #ddd;
         }
         footer {
             background: #111;
@@ -223,10 +195,11 @@
             font-family: Arial, sans-serif;
         }
         .hidden { display: none !important; }
-        .author {
-            font-family: Arial, sans-serif; 
-            color: #777; 
-            margin-bottom: 10px;
+        h2 { font-size: 28px; margin: 0 0 15px 0; font-weight: 600; }
+        .author-line { font-family: Arial, sans-serif; color: #555; margin-bottom: 20px; font-size: 15px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        @media (max-width: 700px) {
+            .container { padding: 25px; }
+            h1 { font-size: 32px; }
         }
     </style>
 </head>
@@ -235,127 +208,123 @@
 <header>
     <div class="top-bar">
         <div class="site-title">
-            M12e Puebla <span>Archivo de análisis</span>
-            <span class="nuevo-badge hidden">¡NUEVO!</span>
+            M12e Puebla <span>Archivo de análisis crítico</span>
+            <span id="nuevo-badge" class="nuevo-badge">¡NUEVO!</span>
         </div>
         <div class="meta-icons">
-            <a href="mailto:tu-email@gmail.com">✉️ Contacto</a>
+            <a href="mailto:redaccion@radiom12e.com">✉️ Contacto</a>
             <a href="#" target="_blank">▶ YouTube</a>
         </div>
     </div>
 </header>
 
 <nav id="menu-navegacion">
-    <!-- Generado por JavaScript -->
+    <!-- menú dinámico generado por JS -->
 </nav>
 
-<div id="nuevo-banner" class="nuevo-articulo-banner hidden">
-    📢 <a href="#" style="text-decoration:none; color:inherit;">¡Nuevo análisis disponible!</a>
+<div id="nuevo-banner" class="nuevo-articulo-banner">
+    📢 <a href="#" id="banner-link">Análisis estructural: El costo imperial, guerra y pobreza interna →</a>
 </div>
 
-<img id="hero-img" src="" alt="Buque de COSCO y bandera de Venezuela" class="hero-image">
+<img id="hero-img" src="" alt="Portaaviones US Navy - Despliegue imperial" class="hero-image">
 
 <div class="container" id="contenido-principal">
-    <!-- Generado por JavaScript -->
+    <!-- todo el artículo se inyecta dinámicamente -->
 </div>
 
 <footer>
-    © 2026 M12e Puebla · Plataforma de Análisis Crítico
+    © 2026 M12e Puebla · Plataforma de Análisis Crítico · Hecho por: Redacción RadioM12e · Director: Antonio Sánchez Ballinas
 </footer>
 
 <script>
-    // === ARTÍCULO COMPLETO: RASTREO PRIMERO, ANÁLISIS DESPUÉS ===
+    // ========== BASE DE DATOS DEL ANÁLISIS: "EL COSTO IMPERIAL: GUERRA, POBREZA Y LA BÁRBARIE DEL CAPITAL" ==========
     const ARTICULOS = [
         {
             id: 1,
-            titulo: "El Fuego y el Acuerdo: Cómo la Guerra en Irán Está Forjando la Nueva Servidumbre Global",
-            subtitulo: "Un análisis dialéctico de la contradicción interimperialista en Oriente Medio",
-            fecha: "17 de marzo de 2026",
-            autor: "Operador Analítico [R⊕10⊕T⊕P⊕A] ∘ M ∘ B4 ∘ B7 ∘ V.E. ∘ X8",
-            // ===== LA FOTO DEL BARCO CON COSCO =====
-            heroImage: "https://diariodecuba.com/sites/default/files/images/2026-01/china-venezuela-petroleo.png",
-            // ========================================
+            titulo: "El Costo Imperial: Guerra, Pobreza y la Bárbarie del Capital",
+            subtitulo: "Un portaaviones en el Golfo, la maquinaria de muerte y el precio que paga la clase trabajadora en el corazón del imperio.",
+            fecha: "20 de marzo de 2026",
+            autor: "Redacción RadioM12e · Dirección: Antonio Sánchez Ballinas",
+            heroImage: "https://c.files.bbci.co.uk/481E/production/_100426481_gettyimages-912839046-1.jpg",
             secciones: [
-                // --- 1. RASTREO DE AGENCIAS (AHORA PRIMERO) ---
                 {
-                    id: "agencias",
-                    meta: "I. RASTREO DE AGENCIAS",
-                    titulo: "Análisis de las expresiones fenoménicas del capital",
-                    contenido: `
-                        <p>A continuación, se presenta el análisis de las agencias informativas, entendidas no como "fuentes" neutrales, sino como expresiones de determinadas fracciones de capital y proyectos políticos en pugna.</p>
-                        <table class="tabla-agencias">
-                            <thead>
-                                <tr><th>Agencia</th><th>Región/Función</th><th>Análisis del Material Rastreado (Coyuntura Marzo 2026)</th></tr>
-                            </thead>
-                            <tbody>
-                                <tr><td>AP / Reuters</td><td>Global (Centro/Liberal)</td><td>La cobertura se centra en la "desestabilización" y el "caos". La narrativa dominante es la de un mundo que se "fragmenta". La guerra se presenta como un evento meteorológico, despojado de sus determinaciones de clase. El límite de lo decible lo marca el miedo a nombrar al verdadero sujeto: el capital financiero estadounidense que necesita la guerra para sostener la tasa de ganancia y la supremacía del dólar. La noticia de que China "presiona" para que la visita de Trump continúe se enmarca en el cliché de la "rivalidad", sin analizar la co-dependencia estructural que obliga a ambas partes a mantener la farsa del diálogo mientras se aniquilan mutuamente en otros terrenos.</td></tr>
-                                <tr><td>Xinhua / China-Embassy</td><td>China (Izquierda de Estado)</td><td>La voz del capitalismo de Estado chino es quirúrgicamente precisa. Sus comunicados no son meras declaraciones; son actos de posicionamiento en la correlación de fuerzas. Al condenar las "violaciones del derecho internacional" y abogar por el cese al fuego, China no habla desde una inocente "paz mundial", sino que construye la imagen de la "responsabilidad" que necesita para atraer capitales y alianzas. La ayuda humanitaria a Irán, Jordania, Líbano e Irak es la forma fenoménica de una operación mucho más profunda: la compra de lealtades y la construcción de una red de Estados clientes mediante la deuda y la infraestructura, no mediante misiles. Es la acumulación por otros medios.</td></tr>
-                                <tr><td>Prensa Latina</td><td>Cuba/LatAm (Izquierda antiimperialista)</td><td>Su función de contraste es vital. Si hubiera estado, habría recordado que la lucha antiimperialista no es una competencia entre grandes potencias, sino la autodeterminación de los pueblos. Su ausencia en el discurso global sobre la guerra es la prueba de que la memoria histórica ha sido sepultada por la nueva razón de Estado: hoy se negocia con el dios Mercado, no con la historia de los oprimidos.</td></tr>
-                                <tr><td>Sputnik / TASS</td><td>Rusia (Derecha nacionalista)</td><td>La estrategia de la burguesía rusa es clara: observar cómo EEUU se desangra en un conflicto prolongado. Su discurso se enfoca en el "día en que Israel perdió a América", una metáfora que oculta su propio deseo: que el imperialismo rival se fracture internamente, abriendo espacio para su propia recomposición regional.</td></tr>
-                                <tr><td>EFE / AFP</td><td>Europa (Centro/Socialdemócrata)</td><td>La desesperación de la socialdemocracia europea es palpable. Alemania, España, Francia e Italia diciendo "no es nuestra guerra" es la confesión de una clase política que descubre, horrorizada, que ha perdido todo margen de maniobra. Atrapados entre la lealtad a la OTAN (léase: la sumisión al capital estadounidense) y el suicidio económico que implica la guerra (energía, refugiados, inflación), solo atinan a gemir débilmente. La petición a Israel de que no invada Líbano es el último estertor de una conciencia moral que ya no tiene base material.</td></tr>
-                            </tbody>
-                        </table>
-                        <div class="nota-metodologica">
-                            <strong>Nota metodológica:</strong> Ninguna de estas voces es "la verdad". Todas deben ser sometidas al análisis de clase, identificando la fracción que representan, sus contradicciones internas y la distancia entre su decir y su hacer material.
-                        </div>
-                    `
+                    id: "espectaculo-poder",
+                    meta: "1. EL ESPECTÁCULO DEL PODER",
+                    titulo: "Un portaaviones en aguas turbulentas",
+                    contenido: `<p>La imagen es clásica en su composición: un portaaviones de la clase Gerald R. Ford, rodeado de su grupo de ataque, surca aguas que bien podrían ser del Golfo Pérsico o del Mediterráneo oriental. El Pentágono lo denomina "disuasión". Los medios globales, desde Associated Press hasta Reuters, lo presentan como parte del despliegue rutinario para hacer frente a la "amenaza iraní". La fotografía se reproduce en cadenas internacionales, en portales de noticias, en redes sociales. Es la apariencia inmediata del poder estadounidense: una flota que vale decenas de miles de millones de dólares, tripulada por miles de marinos, armada hasta los dientes con misiles Tomahawk y aviones de quinta generación.</p>
+                    <p>Lo que no se ve en la imagen es el costo. No el costo en dólares del combustible que queman los reactores nucleares del portaaviones, sino el costo social que implica mantener esa máquina de guerra en estado de alerta permanente. Las agencias de noticias occidentales reportan el despliegue como un hecho geopolítico más, una pieza en el tablero del Gran Juego entre Washington y Teherán. Pero detrás de ese despliegue hay una contabilidad que la burguesía prefiere mantener en las sombras: la contabilidad de lo que se sacrifica en el interior del imperio para sostener su proyección externa.</p>
+                    <p>La pregunta que surge en la superficie es técnica, casi ingenieril: ¿cuánto cuesta, por día, mantener esta maquinaria? La respuesta que circula en los círculos de analistas militares ronda los 30 millones de dólares diarios para un grupo de ataque de portaaviones en misión de alta disponibilidad. Una cifra que, para el ciudadano común, resulta tan abstracta como los millones de kilómetros cuadrados de océano que la flota patrulla. Pero esa cifra no es abstracta. Es trabajo social no realizado en vivienda. Es salario no pagado en educación. Es vida que se convierte en acero naval.</p>`,
+                    balazo: "Cada dólar destinado a la guerra es un dólar sustraído de la posibilidad de una existencia digna para las mayorías."
                 },
-                // --- 2. RASTREO DE SUBJETIVIDAD ESTATAL ---
                 {
-                    id: "subjetividad",
-                    meta: "II. RASTREO DE LA SUBJETIVIDAD ESTATAL",
-                    titulo: "Las voces del poder y su materialidad",
-                    contenido: `
-                        <p>Sistematización de las declaraciones y posicionamientos oficiales de los actores determinantes en la coyuntura.</p>
-                        <table class="tabla-subjetividad">
-                            <thead>
-                                <tr><th>Categoría</th><th>Actores a rastrear</th><th>Análisis de las Voces Rastreadas</th></tr>
-                            </thead>
-                            <tbody>
-                                <tr><td>Potencia hegemónica</td><td>EE.UU.: Departamento de Estado, Casa Blanca, Pentágono, Reserva Federal, Congreso</td><td>La voz de Trump es la del capital financiero en su fase más depredadora y consciente de su propia decadencia. Sus declaraciones son un monumento a la reificación: pide a otros países que se unan "con entusiasmo" a patrullar el estrecho, y al mismo tiempo condiciona su visita a China a que Pekín colabore en la apertura de esa ruta. El cinismo es la forma ideológica de la coerción. Detrás de la bravuconada ("esto es un tigre de papel"), se esconde el pánico: la Reserva Federal atrapada entre la inflación y el estancamiento, y un complejo militar-industrial que exige su cuota de sangre para mantener los dividendos. La orden de atacar Irán no fue un error; fue la respuesta de una fracción de clase que prefiere el Apocalipsis a la pérdida de su hegemonía.</td></tr>
-                                <tr><td>Potencias rivales</td><td>China: Ministerio de Exteriores, Departamento de Publicidad del PCCh, voceros oficiales. Rusia: Ministerio de Exteriores, Consejo de Seguridad, portavoces de poder.</td><td>El Partido-Estado chino opera con una lógica de larga duración. Mientras su portavoz Lin Jian "toma nota" de las aclaraciones de Trump y mantiene la comunicación para la visita, su embajador en la ONU califica los ataques de "shockeantes" y su enviado especial gira por Arabia Saudita. Esta es la dialéctica del capitalismo de Estado: mantener abierto el canal diplomático con el agresor mientras se teje la red de alianzas de los agredidos. La llamada de Wang Yi a Israel es la pieza más sutil: al exigir la protección de los ciudadanos chinos, le recuerda a Tel Aviv que Pekín tiene intereses y, por tanto, también tiene capacidad de veto o de facilitación en el futuro. China no elige bando en la guerra; elige posicionarse en la nueva configuración de fuerzas que surgirá después de la guerra.</td></tr>
-                                <tr><td>Potencias regionales emergentes</td><td>Brasil, India, Sudáfrica, Turquía, Irán, etc. (Cancillerías, presidencias, posiciones en BRICS, OCS, etc.)</td><td>Los Emiratos interceptando misiles, Qatar haciendo lo propio, Arabia Saudita negando el uso de su espacio aéreo. La voz de las monarquías del Golfo es la del capital que huye del fuego cruzado. Son los verdaderos "neutrales" por necesidad: su supervivencia depende de no enfadar al hegemón decadente que aún tiene bases en su territorio, ni al gigante asiático que les compra el petróleo y les vende seguridad. Su discurso es el silencio o la declaración técnica ("hemos interceptado un objeto"). Es la política del miedo.</td></tr>
-                                <tr><td>Estado-nación del conflicto</td><td>Irán: Presidencia, ministerios clave (Economía, Interior, Defensa, Desarrollo Social), poder legislativo, judicial, fuerzas armadas</td><td>Su voz llega deformada por el ruido de la guerra. Pero sus actos hablan: atacar la embajada de EEUU en Irak, disparar contra Israel, amenazar el estrecho. Es la respuesta de un Estado que ha visto morir a su líder y que sabe que lucha por su supervivencia. Su estrategia declarada de convertir el conflicto en "prolongado" no es una opción, es una confesión de su debilidad relativa: no puede vencer, pero puede desgastar. Al hablar de cobrar el petróleo en yuanes, Irán emite el mensaje más claro a China: "nosotros ponemos los muertos, usted ponga el sistema financiero alternativo".</td></tr>
-                                <tr><td>Movimientos populares</td><td>Sindicatos, organizaciones campesinas, movimientos territoriales, plataformas de derechos humanos (comunicados, pliegos, declaraciones de dirigentes)</td><td>No hay voz directa en los resultados. Solo el dato de más de un millón de desplazados en Líbano. El pueblo, en esta guerra, no habla: es hablado por los misiles. Su subjetividad solo se expresa en el acto desesperado de huir o, en el caso de los reclutas de las milicias, en la decisión de morir. Esta ausencia es el dato más brutal de la correlación de fuerzas: las clases dominadas de Medio Oriente son el combustible de una guerra que deciden otros. La dirección histórica, por ahora, no la escriben ellos.</td></tr>
-                            </tbody>
-                        </table>
-                    `
+                    id: "contabilidad-muerte",
+                    meta: "2. LA CONTABILIDAD DE LA MUERTE",
+                    titulo: "Lo que esconde el presupuesto del Pentágono",
+                    contenido: `<p>Para el año fiscal 2024, el Congreso estadounidense aprobó un presupuesto base para el Pentágono de 886.000 millones de dólares. Esta cifra, de por sí colosal, no incluye los gastos del Departamento de Energía en armamento nuclear ni los fondos extrapresupuestarios para guerras no declaradas. Si se suman todos los rubros de "seguridad nacional", la cifra supera holgadamente el billón de dólares anuales. Es el presupuesto militar más alto del planeta, superior al de los siguientes diez países combinados.</p>
+                    <p>Cada misil Tomahawk que el portaaviones puede lanzar cuesta 1.4 millones de dólares. Cada hora de vuelo de un caza F-35 cuesta 38.000 dólares. Cada día que el grupo de ataque permanece en estación, consumiendo combustible, mantenimiento, salarios y munición simulada, se llevan 30 millones de dólares. Si el despliegue se convierte en guerra abierta, los costos se disparan. Durante la guerra de Irak, el costo operativo alcanzó los 300 millones de dólares diarios en los momentos de mayor intensidad.</p>
+                    <p>La prensa liberal, cuando aborda el tema, lo hace desde la perspectiva de la "eficiencia del gasto" o del "peso sobre el contribuyente". Pero el contribuyente no es un ente abstracto. Es un trabajador que ve cómo sus impuestos financian destructores mientras su escuela pública cierra, mientras el puente de su ciudad se cae, mientras su seguro médico no cubre el tratamiento que necesita. La ideología dominante presenta el presupuesto militar como un gasto necesario para la "seguridad nacional". Lo que oculta es que ese presupuesto es el mecanismo mediante el cual las grandes corporaciones del complejo militar-industrial —Lockheed Martin, Raytheon, General Dynamics, Northrop Grumman— realizan su acumulación de capital, mientras el Estado socializa las pérdidas y las consecuencias.</p>`,
+                    balazo: "886.000 millones de dólares anuales: más que los siguientes diez países militares combinados. Eso es guerra, no defensa."
                 },
-                // --- 3. APERTURA ---
                 {
-                    id: "apertura",
-                    meta: "III. APERTURA FENOMENOLÓGICA",
-                    titulo: "Lo que salta a la vista",
-                    contenido: "<p>Lo que salta a la vista, lo que nos grita desde las pantallas, es el caos. Misiles sobre Beirut y Teherán, drones sobre Bagdad, el humo elevándose sobre una embajada estadounidense en llamas. La imagen que ilustra este análisis —un portacontenedores chino navegando aguas aparentemente tranquilas— contrasta brutalmente con la noticia de que más de un millón de libaneses han huido de sus hogares. La apariencia inmediata del conflicto es la de un choque de civilizaciones, una guerra santa, una reacción en cadena de odios milenarios. Israel bombardea, Irán retaliaría, Estados Unidos se ve arrastrado. Parece una tragedia. Pero en la superficie del fenómeno, las cosas nunca son lo que parecen.</p>",
-                    balazo: "Lo que estamos presenciando no es un desorden, sino la dolorosa y violenta reordenación del mundo. El caos es el parto de un nuevo orden."
+                    id: "pobreza-imperio",
+                    meta: "3. LA CARA INTERNA DEL IMPERIO",
+                    titulo: "Pobreza en la tierra de la opulencia",
+                    contenido: `<p>Mientras el portaaviones navega, en Estados Unidos hay 38 millones de personas viviendo en la pobreza oficial. La Oficina del Censo, con sus metodologías diseñadas para minimizar el problema, reporta una tasa del 11.5% para 2023. Pero esta cifra es una abstracción ideológica. Si se aplica el Índice de Pobreza Suplementario, que considera los costos reales de vida, los gastos médicos y el impacto de los recortes a los programas sociales tras la pandemia, la tasa asciende al 12.4%.</p>
+                    <p>La pobreza no es un fenómeno natural ni accidental. Es una relación social producida y reproducida por el modo de acumulación. El 19% de los niños estadounidenses vive en pobreza. En un país que se presenta como el líder del mundo libre, uno de cada cinco niños no tiene garantizado lo básico. El 21% de la población afroamericana vive en pobreza. El 17% de la población latina. La marginación social tiene rostro racial porque el capitalismo estadounidense fue construido sobre la esclavitud y la segregación, y continúa reproduciendo esas divisiones como mecanismo de dominación.</p>
+                    <p>Más de 650.000 personas viven sin hogar en Estados Unidos, según datos del Departamento de Vivienda. Ciudades como Los Ángeles, Nueva York y San Francisco tienen verdaderos campamentos de personas durmiendo en las calles, mientras los alquileres se disparan y los salarios reales se estancan. La deuda de los hogares alcanzó los 17.8 billones de dólares en 2024. Deuda médica, deuda estudiantil, deuda de tarjetas de crédito. La clase trabajadora estadounidense, una de las más productivas del planeta, ve cómo el fruto de su trabajo se convierte en ganancias para unos pocos mientras ella misma se hunde en la precariedad.</p>`,
+                    balazo: "650.000 personas sin hogar, 38 millones en pobreza: el costo interno de sostener un imperio."
                 },
-                // --- 4. RUPTURA ---
                 {
-                    id: "ruptura",
-                    meta: "IV. RUPTURA DE LA PSEUDOCONCRECIÓN",
-                    titulo: "La sangre y los dólares",
-                    contenido: "<p>Detengámonos en esa imagen del barco. No es una postal de la paz. Es la prueba material de que, mientras el fuego consume Oriente Medio, las ruedas del capital global siguen girando. Más aún: el fuego está engrasando esas ruedas para una fracción del capital, mientras las quema para otra. La guerra no es un error, no es una locura. Es la continuación de los negocios por otros medios. El presidente Trump, desde Washington, exige a sus aliados que se unan 'con entusiasmo' a patrullar el Estrecho de Ormuz, y al mismo tiempo sugiere que la visita a Pekín podría depender de que China ayude a abrirlo. La conexión es obscena en su claridad: la sangre que se derrama en Teherán y los dólares que fluyen hacia Shanghái y Washington son la misma sustancia.</p>"
+                    id: "calculo-ideologia",
+                    meta: "4. EL CÁLCULO QUE LA IDEOLOGÍA PROHÍBE",
+                    titulo: "Guerra o vida",
+                    contenido: `<p>Ahora realicemos el ejercicio que la prensa corporativa jamás hace. Tomemos los 300 millones de dólares diarios que costaría una guerra a gran escala contra Irán, según los parámetros de conflictos anteriores. Preguntémonos qué significa esa cifra en términos de reproducción social.</p>
+                    <p>Con 300 millones de dólares, en un solo día se podrían proporcionar vales de alimentación suplementaria a más de 1.2 millones de personas durante un mes entero. El programa SNAP, que ayuda a familias de bajos ingresos a comprar alimentos, tiene un costo mensual por beneficiario de aproximadamente 250 dólares. En un día de guerra, se podría alimentar durante un mes a una población equivalente a la de la ciudad de San Diego.</p>
+                    <p>Con el costo de un mes de guerra a gran escala —unos 9.000 millones de dólares— se podría eliminar la falta de vivienda crónica en todo Estados Unidos. Los presupuestos municipales y estatales llevan décadas luchando con presupuestos de cientos de millones para abordar una crisis que requiere inversiones en escala federal. Un mes de guerra equivale a resolver de un plumazo lo que la burocracia y la mezquindad fiscal mantienen como llaga abierta.</p>
+                    <p>Con el costo anual del Pentágono, se podría implementar un sistema de salud universal que cubriera a todos los estadounidenses, eliminando la deuda médica que arruina a millones de familias cada año. Se podría duplicar el presupuesto federal para educación pública, garantizando salarios dignos para los maestros, infraestructura escolar adecuada y becas para que cualquier joven pueda acceder a la universidad sin condenarse a una deuda perpetua.</p>
+                    <p>Este no es un ejercicio contable moralista. Es la demostración de la ley del valor llevada a su extremo más bárbaro. El capital fijo —la maquinaria de guerra, los portaaviones, los misiles— se valoriza a sí mismo mediante la destrucción de las condiciones de vida de la fuerza de trabajo. Cada dólar destinado a la guerra es un dólar sustraído de la posibilidad de una existencia digna para las mayorías. La acumulación de capital en el sector militar exige la desacumulación de las condiciones de reproducción de la clase trabajadora.</p>`,
+                    balazo: "Un mes de guerra (9.000 millones de dólares) = erradicar el sinhogarismo crónico en EE.UU. La ecuación es brutal."
                 },
-                // --- 5. NUDO DIALÉCTICO ---
                 {
-                    id: "nudo",
-                    meta: "V. NUDO DIALÉCTICO",
-                    titulo: "Coerción y seducción: las dos caras del capital",
-                    contenido: "<p>La contradicción central que organiza esta masacre no es entre judaísmo e islam, ni siquiera entre Estados Unidos e Irán. Es la contradicción interimperialista entre dos modelos de acumulación de capital en su fase de crisis terminal.</p><p>Por un lado, tenemos al capital financiero-especulativo encarnado en el complejo militar-industrial de Estados Unidos y su apéndice, el Estado de Israel. Su estrategia es la de la <em>coerción directa</em>. Necesita la guerra para mantener la primacía del dólar petrolero, para justificar un presupuesto de defensa que alimenta a sus corporaciones y para disciplinar a cualquier periferia que ose negociar su autonomía. Pero su discurso, el de la 'defensa de la democracia', se resquebraja. Sus propios aliados europeos se desmarcan. La hegemonía estadounidense, basada en el consentimiento, se ha transformado en pura dominación militar, y la dominación, cuando es el único recurso, es el síntoma inequívoco de la decadencia.</p><p>Por otro lado, tenemos al capitalismo de Estado chino. Su estrategia es la de la <em>seducción estructural</em>. Mientras Estados Unidos quema su poderío en bombas, China acumula poderío en contratos, rutas y reservas de divisas. No necesita invadir Irán; le basta con comprar su petróleo con descuento, ofrecerle una red de seguridad financiera en el BRICS y la OCS, y presentarse como el 'garante de la estabilidad'. Su discurso de paz no es pacifismo; es la forma ideológica que adopta su interés de clase: necesita que el flujo de mercancías no se interrumpa para que su modelo de acumulación, basado en la producción real y la exportación, no colapse.</p><p>Aquí se inserta la guerra como mediación. El conflicto prolongado en Oriente Medio es el crisol donde estas dos lógicas se funden y chocan: <strong>Para Estados Unidos</strong>, la guerra es una trampa. Debe sostenerla para no mostrar debilidad, pero cada misil disparado es un dólar que no se invierte en infraestructura, un aliado que se distancia y una porción mayor del comercio global que busca refugio en el yuan o en el oro. <strong>Para China</strong>, la guerra es una oportunidad histórica. El miedo al fuego empuja al capital europeo y del Golfo a buscar puertos seguros. La necesidad de rutas energéticas alternativas acelera la construcción de los corredores terrestres, materializando la vieja aspiración de esquivar el dominio naval estadounidense. La guerra, así, actúa como un gigantesco acelerador de la historia: fuerza la 'desglobalización' del bloque occidental para forzar la 'reglobalización' en torno al eje asiático.</p><p>La correlación de fuerzas, en este momento, es de un <em>equilibrio inestable que favorece la tendencia china</em>. Estados Unidos está a la ofensiva militar, pero a la defensiva estratégica. Sus golpes son letales, pero no definen el futuro. China está a la defensiva diplomática (evitando la condena directa que rompa sus puentes con Occidente), pero a la ofensiva histórica. Cada día que pasa, la nueva arquitectura financiera y comercial se consolida un poco más en la sombra del conflicto.</p>"
+                    id: "mediaciones-consenso",
+                    meta: "5. MEDIACIONES DEL CONSENSO",
+                    titulo: "Estado, medios y fracciones de clase",
+                    contenido: `<p>La apariencia ideológica que separa el presupuesto militar de la pobreza interna no se sostiene por sí sola. Requiere todo un complejo de mediaciones institucionales y discursivas que operan las 24 horas del día. Los medios de comunicación son la primera línea de este dispositivo.</p>
+                    <p>Associated Press y Reuters, los grandes cables globales, funcionan como sensores del capital. Establecen los límites de lo decible, los términos del debate aceptable. Cuando informan sobre el despliegue militar contra Irán, lo hacen desde el supuesto no cuestionado de que Estados Unidos tiene derecho a proyectar poder militar en todo el planeta. La "amenaza" iraní se da por supuesta. La legitimidad de la disuasión, también. El debate queda circunscrito a si el gobierno demócrata es "suficientemente duro" o si debería buscar más aliados. La pregunta por el costo interno no aparece.</p>
+                    <p>EFE y AFP, las agencias europeas, aportan el barniz socialdemócrata. Sus titulares insisten en la "preocupación" de la comunidad internacional, en la "necesidad" de una solución diplomática. Pero nunca cuestionan el hecho de que un país gaste un billón de dólares al año en matar mientras millones de sus ciudadanos pasan hambre. La socialdemocracia europea, en crisis terminal, ha internalizado la separación entre lo económico y lo político: la guerra es cosa de "realpolitik", la pobreza es un "problema social" que se atiende con caridad, no con redistribución.</p>
+                    <p>El Estado estadounidense, en su doble carácter de condensación de la correlación de fuerzas, muestra sus fracturas pero también su unidad esencial. El Departamento de Estado, la Casa Blanca, el Pentágono, la Reserva Federal y el Congreso —con sus fracciones que van desde la socialdemocracia funcional hasta el trumpismo más reaccionario— coinciden en lo fundamental: el presupuesto militar es sagrado. Los debates sobre el techo de deuda, los cierres patronales del gobierno, las peleas por los recortes fiscales, todo ocurre en los márgenes. El núcleo duro del gasto militar nunca se discute.</p>`,
+                    balazo: "El presupuesto militar es sagrado: ese es el consenso de clase que atraviesa demócratas y republicanos."
                 },
-                // --- 6. CLÍMAX ---
                 {
-                    id: "climax",
-                    meta: "VI. CLÍMAX DE ADVERTENCIA",
-                    titulo: "La nueva servidumbre",
-                    contenido: "<p>El peligro inminente que la pseudoconcreción oculta no es solo una escalada nuclear. Es la consolidación de una nueva forma de servidumbre. Mientras nosotros miramos el baile de los misiles, las potencias renegocian los términos de nuestra dependencia. Si la guerra se prolonga, Europa se convertirá en un apéndice irrelevante, condenado a pagar la energía al precio que fije la geopolítica. Estados Unidos, si persiste en su locura, podría implosionar por dentro, llevándose consigo el sistema financiero global en su caída. Pero China, que observa desde la distancia calculada, no construye un paraíso. Construye un nuevo centro de gravedad. Y en ese nuevo centro, las reglas las pondrá el capital, con un rostro burocrático y una sonrisa de 'cooperación win-win'. La advertencia es clara: el fin de la hegemonía estadounidense no es el fin del capitalismo. Es su metamorfosis.</p>"
+                    id: "fragmentacion-trabajadora",
+                    meta: "6. FRAGMENTACIÓN DE LA CLASE TRABAJADORA",
+                    titulo: "Analfabetismo, aislamiento y resignación",
+                    contenido: `<p>El índice de marginación en Estados Unidos no es solo económico. Es cultural y político. Según el Centro Nacional de Estadísticas Educativas, el 54% de los adultos estadounidenses lee por debajo del nivel de sexto grado. El 21% es funcionalmente analfabeto. Esto significa que más de 50 millones de adultos tienen dificultades para leer un periódico, entender un contrato de trabajo o seguir un debate político complejo.</p>
+                    <p>Este no es un accidente. Es el producto de un sistema escolar segregado racial y económicamente, desfinanciado sistemáticamente por décadas, que prepara contingentes de mano de obra disciplinada para los ejércitos de reserva o para los ejércitos de invasión. La industria cultural —televisión basura, redes sociales diseñadas para la adicción, música que promueve el consumo acrítico— completa el trabajo de despolitización.</p>
+                    <p>La fragmentación geográfica refuerza el aislamiento. El cierre de fábricas en el Cinturón del Óxido dejó ciudades enteras sin base económica, con poblaciones empobrecidas, adictas a opioides y políticamente volatilizadas. El Sur, con su tradición de lucha obrera negra, ha sido sometido a décadas de leyes anti-sindicales y represión. El Oeste, con sus economías tecnológicas, ha creado enclaves de alta productividad rodeados de ejércitos de precarios que viven en sus autos.</p>
+                    <p>La correlación de fuerzas muestra una clase trabajadora fragmentada, racializada, geográficamente aislada y culturalmente despolitizada. Pero también muestra brotes de recomposición. Las huelgas de autotrabajadores de 2023, las enfermeras que paralizaron hospitales en Nueva York y California, los trabajadores de puertos que cerraron la costa Oeste, los sindicatos de escritores y actores que desafiaron a los estudios de Hollywood: todos ellos son indicios de una combatividad que rompe la apariencia de resignación.</p>`,
+                    balazo: "El analfabetismo funcional del 21% no es casualidad: es parte del dispositivo de dominación."
                 },
-                // --- 7. CIERRE DE PRAXIS ---
                 {
-                    id: "cierre",
-                    meta: "VII. CIERRE DE PRAXIS",
-                    titulo: "Ni misil ni contrato",
-                    contenido: "<p>Para la clase trabajadora global, para los pueblos de Irán, Líbano, Palestina y de todo el mundo, la dirección estratégica no puede ser elegir entre el misil estadounidense y el contrato de inversión chino. Esa es la falsa elección que la burguesía de ambos bandos nos ofrece. La praxis, aquí, consiste en desgarrar el velo de esa falsa contradicción: no se trata de 'apoyar a China contra el imperialismo yanqui', porque el Estado chino es <em>otra forma</em> de dominación de clase, no su antítesis.</p><p>La tarea es, ante todo, cognitiva: entender que nuestra liberación no vendrá del triunfo de uno de estos gigantes sobre el otro. Vendrá de la capacidad de organizarnos <em>contra</em> ambos, de aprovechar las grietas que esta guerra interimperialista abre para construir poder popular autónomo. La lucha no es por qué polo de la burguesía global dominará el siglo XXI. La lucha es por construir un mundo donde el valor de la vida de un desplazado libanés no sea calculado en la pizarra de un fondo de inversión en Hong Kong o en el presupuesto del Pentágono. El umbral de ruptura histórico no lo marcarán los generales, sino la conciencia de que ni el misil ni el contrato nos representan. Esa conciencia, por ahora, es solo una semilla bajo el fuego. Pero es la única que puede dar un fruto distinto al humo y la ceniza.</p>"
+                    id: "umbral-ruptura",
+                    meta: "7. EL UMBRAL DE RUPTURA",
+                    titulo: "Crisis económica, crisis política, crisis de hegemonía",
+                    contenido: `<p>La contradicción entre el costo de la reproducción imperial y el costo de la reproducción de la fuerza de trabajo no puede mantenerse indefinidamente. La acumulación de contradicciones prepara el salto cualitativo. Los indicadores de crisis se multiplican.</p>
+                    <p>La deuda pública estadounidense supera los 34 billones de dólares. El servicio de esa deuda consume cada vez más recursos que podrían destinarse a infraestructura social. La Reserva Federal mantiene tasas de interés altas para enfriar la economía, pero esa política encarece el crédito para las familias y pequeñas empresas mientras no afecta la capacidad de financiamiento de las grandes corporaciones. La inflación golpea con más fuerza a los que menos tienen. El mercado inmobiliario se ha convertido en una máquina de extracción de renta gestionada por fondos de inversión que compran casas para alquilarlas a precios imposibles.</p>
+                    <p>En el plano político, la crisis de hegemonía es evidente. Los dos partidos mayoritarios representan facciones de la misma clase, pero ninguna de ellas logra construir una dirección intelectual y moral que cohesione a la sociedad. El trumpismo emergió como la expresión reaccionaria de un malestar real: el abandono de las clases populares por parte de una élite demócrata que solo se moviliza por las guerras en el extranjero y las causas identitarias en el país. La respuesta liberal al trumpismo ha sido el militarismo y el anticomunismo rampante, profundizando el cierre del horizonte político.</p>
+                    <p>Pero el peligro no es solo la guerra contra Irán, cuyas consecuencias serían una conflagración regional que elevaría el precio del petróleo, desataría una crisis inflacionaria global y arrastraría a millones de personas a la muerte y el desplazamiento. El peligro es que la clase trabajadora estadounidense continúe sin percibir que su miseria cotidiana es el costo de operación de un imperio. Que siga votando por los demócratas que le prometen alivio mientras financian la guerra. Que siga creyendo que el enemigo está en Teherán o Pekín, no en Wall Street y el Pentágono.</p>`,
+                    balazo: "34 billones de dólares de deuda pública mientras el Pentágono no conoce recortes: el Estado al servicio de la muerte."
+                },
+                {
+                    id: "direccionalidad",
+                    meta: "8. DIRECCIONALIDAD HISTÓRICA",
+                    titulo: "Entre la barbarie y la recomposición",
+                    contenido: `<p>La dirección objetiva de la coyuntura, si se la observa desde la superficie, apunta a una profundización del dominio del capital a través de la guerra y la austeridad. El imperialismo estadounidense, en su fase de declive relativo frente a China y en medio de la confrontación con Rusia, tiende a endurecer su política exterior y a aumentar la represión interna. Las capas medias se empobrecen. Los trabajadores se precarizan. Los migrantes son utilizados como chivos expiatorios. La democracia formal se vacía de contenido.</p>
+                    <p>Pero la dialéctica enseña que la acumulación de contradicciones no solo profundiza la crisis del sistema, sino que crea las condiciones subjetivas para su superación. Las huelgas de los últimos años muestran una recomposición de la combatividad obrera que había estado dormida durante décadas. La solidaridad con Palestina que ha brotado en las universidades y las calles muestra que la conciencia antiimperialista no ha muerto. La discusión sobre el costo de la guerra, cuando se la arranca del ámbito técnico y se la sitúa en el ámbito de la lucha de clases, puede convertirse en un arma de masas.</p>
+                    <p>El criterio ético-normativo que guía esta reflexión no es abstracto. Se trata de los intereses históricos del proletariado y de las naciones oprimidas, tanto en el interior del imperio como en su periferia. Desde esa perspectiva, la guerra contra Irán no es un conflicto entre estados, sino un ataque del capital internacional contra las posibilidades de autodeterminación de los pueblos de la región, y simultáneamente un ataque contra las condiciones de vida de los trabajadores estadounidenses.</p>
+                    <p>La orientación para la acción, entonces, es la necesidad de construir la mediación consciente que conecte el portaaviones en el Golfo con la escuela sin calefacción en Chicago. Significa demostrar materialmente, con cifras, con ejemplos, con organización, que cada dólar destinado a la guerra es un dólar robado a la vida. Significa construir la solidaridad concreta con el pueblo iraní, asfixiado por sanciones que son la otra cara de la guerra, y también con los soldados estadounidenses enviados a matar y morir por intereses que no son los suyos.</p>
+                    <p>No hay neutralidad posible en este terreno. El costo de la guerra es el precio de la barbarie. Su rechazo organizado, consciente, militante, es la base para una nueva civilización. El portaaviones seguirá surcando los mares mientras la clase trabajadora no le arranque al Estado los recursos que hoy se destinan a la destrucción. Pero la historia no está escrita. La correlación de fuerzas puede cambiar. Y cambiará, cuando aquellos que producen la riqueza del país comprendan que tienen el poder de decidir cómo se distribuye.</p>`,
+                    balazo: "No hay neutralidad: o se financia la guerra o se financia la vida. La clase trabajadora tiene el poder de decidir."
                 }
             ]
         }
@@ -367,25 +336,26 @@
         const container = document.getElementById('contenido-principal');
         const menu = document.getElementById('menu-navegacion');
         
-        // Actualizar Imagen Hero
-        document.getElementById('hero-img').src = art.heroImage;
+        // Actualizar Imagen Hero con la imagen proporcionada
+        const heroImg = document.getElementById('hero-img');
+        if (heroImg) heroImg.src = art.heroImage;
         
-        // Limpiar y Generar Menú
+        // Limpiar y Generar Menú dinámico con los ID de cada sección
         menu.innerHTML = "";
         art.secciones.forEach(sec => {
             const link = document.createElement('a');
             link.href = `#${sec.id}`;
-            // Extraer el número romano (I, II, III, IV, V, VI, VII)
-            const romano = sec.meta.split('.')[0];
-            link.textContent = romano;
+            link.textContent = sec.meta.split(':')[0] + " · " + sec.id.replace(/-/g,' ').toUpperCase();
             menu.appendChild(link);
         });
 
-        // Generar Contenido
+        // Generar Contenido + créditos del director como autor fijo
         let html = `
-            <div class="author">Por: ${art.autor} | ${art.fecha}</div>
+            <div class="autor-destacado">
+                ✍️ ${art.autor} | ${art.fecha}
+            </div>
             <h1>${art.titulo}</h1>
-            <p style="font-size: 20px; color: #555; margin-bottom: 40px;">${art.subtitulo}</p>
+            <p style="font-size: 20px; color: #555; margin-bottom: 30px; border-left: 2px solid #c00; padding-left: 18px;">${art.subtitulo}</p>
         `;
 
         art.secciones.forEach(sec => {
@@ -393,27 +363,35 @@
                 <section id="${sec.id}" class="seccion">
                     <div class="section-meta">${sec.meta}</div>
                     <h2>${sec.titulo}</h2>
-                    ${sec.balazo ? `<div class="balazo-ep">${sec.balazo}</div>` : ''}
+                    ${sec.balazo ? `<div class="balazo-ep">⚡ ${sec.balazo}</div>` : ''}
                     <div class="article-content">${sec.contenido}</div>
                 </section>
             `;
         });
 
-        // Añadir caja de comentarios genérica al final
+        // Añadir caja de comentarios simbólica
         html += `
             <div class="comentarios">
-                <h2>Comentarios</h2>
-                <textarea placeholder="Escribe tu opinión..."></textarea><br>
-                <button disabled>Publicar (Demo)</button>
+                <h2>Comentarios y debate</h2>
+                <textarea rows="4" placeholder="Escribe tu opinión o reflexión..."></textarea><br>
+                <button disabled style="padding:10px 20px; background:#111; color:white; opacity:0.6; border:none;">Publicar (versión de análisis)</button>
+                <p style="font-size:12px; margin-top:10px;">Foro de discusión crítica — la palabra es herramienta de transformación.</p>
             </div>
         `;
 
         container.innerHTML = html;
     }
 
-    // Iniciar con el primer artículo
-    window.onload = () => cargarArticulo(0);
+    // Iniciar con el artículo único
+    window.onload = () => {
+        cargarArticulo(0);
+        // Ajuste de banner para no tener conflictos
+        const bannerLink = document.getElementById('banner-link');
+        if(bannerLink) bannerLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            document.getElementById('espectaculo-poder')?.scrollIntoView({ behavior: 'smooth' });
+        });
+    };
 </script>
-
 </body>
 </html>
